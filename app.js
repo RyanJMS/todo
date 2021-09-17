@@ -23,4 +23,22 @@ const addTodo = (event) => {
     todoInput.value = ''
 }
 
+const deleteCheck = (event) => {
+    const item = event.target
+
+    if(item.classList[0] === 'trash-btn'){
+        const todo = item.parentElement
+        todo.classList.add('fall')
+        todo.addEventListener("transitioned", () => {
+            todo.remove()
+        })
+    }
+    if(item.classList[0] === 'complete-btn'){
+        const todo = item.parentElement
+        todo.classList.toggle('completed')
+    }
+    
+}
+
 todoButton.addEventListener("click", addTodo)
+todoList.addEventListener("click", deleteCheck);
